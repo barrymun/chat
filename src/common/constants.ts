@@ -1,11 +1,15 @@
 import {initializeApp} from "firebase/app";
-import {getAnalytics} from "firebase/analytics";
 import {getAuth} from "firebase/auth";
 import {getFirestore} from "firebase/firestore";
+import {getAnalytics} from "firebase/analytics";
+import {FirebaseApp} from "@firebase/app";
+import {Auth} from "@firebase/auth";
+import {Firestore} from "@firebase/firestore";
+import {Analytics} from "@firebase/analytics";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+const firebaseConfig: object = {
   apiKey: "AIzaSyC_WvtUbW-HAXmPYx2nElMDrgejpsQjeFo",
   authDomain: "chat-9beb5.firebaseapp.com",
   projectId: "chat-9beb5",
@@ -16,9 +20,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+const app: FirebaseApp = initializeApp(firebaseConfig);
+export const analytics: Analytics = getAnalytics(app);
 
 // Initialize Firebase Authentication and get a reference to the service
-export const auth = getAuth(app);
-export const firestore = getFirestore(app);
+export const auth: Auth = getAuth(app);
+export const firestore: Firestore = getFirestore(app);

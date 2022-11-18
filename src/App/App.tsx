@@ -1,9 +1,9 @@
 import "react";
 import classes from './App.module.scss';
 import {useAuthState} from "react-firebase-hooks/auth";
-import SignIn from "components/SignIn";
 import { auth } from "common/constants";
-
+import SignIn from "components/SignIn";
+import ChatLog from "components/ChatLog";
 
 export default function App() {
 
@@ -16,7 +16,7 @@ export default function App() {
       <header/>
 
       <section>
-        {user ? <>signed in</> : <SignIn/>}
+        {user ? <ChatLog/> : <SignIn/>}
       </section>
     </div>
   )
