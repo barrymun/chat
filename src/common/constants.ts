@@ -26,3 +26,8 @@ export const analytics: Analytics = getAnalytics(app);
 // Initialize Firebase Authentication and get a reference to the service
 export const auth: Auth = getAuth(app);
 export const firestore: Firestore = getFirestore(app);
+
+// firestore collection name constants
+export const DOCUMENTS_LIMIT: number = 25;
+export const ORDER_BY_FIELD_PATH_DEFAULT: string = "createdAt";
+export const COLLECTION_MESSAGE: string = "message";
