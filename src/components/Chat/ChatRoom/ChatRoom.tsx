@@ -3,6 +3,7 @@ import {collection, query, getDocs, orderBy, limit} from "firebase/firestore";
 import {CollectionReference, Query, QuerySnapshot} from "@firebase/firestore"
 import {firestore, DOCUMENTS_LIMIT, COLLECTION_MESSAGE, ORDER_BY_FIELD_PATH_DEFAULT} from "common/constants";
 import SignOut from "components/SignOut";
+import ChatMessage from "components/Chat/ChatMessage";
 
 export default function ChatRoom() {
 
@@ -25,5 +26,7 @@ export default function ChatRoom() {
 
   return <>
     <SignOut/>
+
+    {messages.map((message, index) => <ChatMessage key={index} message={message}/>)}
   </>;
 }
