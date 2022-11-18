@@ -1,32 +1,41 @@
-import {useState} from 'react'
-import reactLogo from '../assets/react.svg'
+import "react";
 import classes from './App.module.scss';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import {useAuthState} from "react-firebase-hooks/auth";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyC_WvtUbW-HAXmPYx2nElMDrgejpsQjeFo",
+  authDomain: "chat-9beb5.firebaseapp.com",
+  projectId: "chat-9beb5",
+  storageBucket: "chat-9beb5.appspot.com",
+  messagingSenderId: "176201448383",
+  appId: "1:176201448383:web:4f74d78b35e4c26338bf0a",
+  measurementId: "G-NJ9RSWFQMD"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app);
+
+const firestore = getFirestore(app);
+
 
 export default function App() {
-  const [count, setCount] = useState(0)
+
+  const [user] = useAuthState(auth);
+  console.log(user)
 
   return (
-    <div >
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/public/vite.svg" className={classes.logo} alt="Vite logo"/>
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className={`${classes.logo} ${classes.react}`} alt="React logo"/>
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className={classes.card}>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className={classes.readTheDocs}>
-        Click on the Vite and React logos to learn more
-      </p>
+    <div>
+      HERE
     </div>
   )
 }
