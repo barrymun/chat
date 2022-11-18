@@ -5,6 +5,8 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import {useAuthState} from "react-firebase-hooks/auth";
+import SignIn from "pages/SignIn";
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -27,7 +29,6 @@ const auth = getAuth(app);
 
 const firestore = getFirestore(app);
 
-
 export default function App() {
 
   const [user] = useAuthState(auth);
@@ -35,6 +36,10 @@ export default function App() {
 
   return (
     <div>
+      <header/> // TODO
+      <section>
+        {user ? null : <SignIn/>}
+      </section>
       HERE
     </div>
   )
