@@ -3,7 +3,7 @@ import classes from './App.module.scss';
 import {useAuthState} from "react-firebase-hooks/auth";
 import { auth } from "common/constants";
 import SignIn from "components/SignIn";
-import ChatLog from "components/ChatLog";
+import ChatRoom from "components/ChatRoom";
 
 export default function App() {
 
@@ -16,7 +16,7 @@ export default function App() {
       <header/>
 
       <section>
-        {user ? <ChatLog/> : <SignIn/>}
+        {user ? <ChatRoom/> : <SignIn/>}
       </section>
     </div>
   )
