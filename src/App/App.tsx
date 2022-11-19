@@ -12,7 +12,9 @@ export default function App() {
   return (
     <div>
       {/* TODO */}
-      <header/>
+      <section>
+        <header/>
+      </section>
 
       <section>
         {user ? <ChatRoom/> : <SignIn/>}
