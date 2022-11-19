@@ -1,3 +1,17 @@
+.createdAt {
+  font-size: 0.7rem;
+  transform: translateY(40%);
+}
+
+.sentTs {
+  margin-left: auto;
+  text-align: right;
+}
+
+.receivedTs {
+  margin-right: auto;
+}
+
 .message {
   border-radius: 0.5rem;
   padding: 0.2rem 0.5rem;

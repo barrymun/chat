@@ -19,11 +19,17 @@ interface Props {
 
 export default function ChatMessage({message}: Props) {
   const {id, uid, text, createdAt} = message;
+  const createdAtClass: string = uid === auth.currentUser?.uid ? 'sentTs' : 'receivedTs';
   const messageClass: string = uid === auth.currentUser?.uid ? 'sent' : 'received';
 
+  const getTs = (seconds: number): string => new Date(seconds * 1000).toISOString().substring(11, 16);
+
   return <>
-    <div className={`${classes.message} ${classes[messageClass]}`}>
+    <span className={`${classes.createdAt} ${classes[createdAtClass]}`}>
+      {getTs(createdAt.seconds)}
+    </span>
+    <span className={`${classes.message} ${classes[messageClass]}`}>
       {text}
-    </div>
+    </span>
   </>;
 }
