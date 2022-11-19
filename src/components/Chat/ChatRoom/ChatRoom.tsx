@@ -1,5 +1,5 @@
 import classes from "./ChatRoom.module.scss";
-import {ChangeEvent, FormEvent, useState} from "react";
+import React, {ChangeEvent, FormEvent, useEffect, useRef, useState} from "react";
 import {addDoc, collection, limit, onSnapshot, orderBy, query, Timestamp} from "firebase/firestore";
 import {CollectionReference, Query} from "@firebase/firestore"
 import {auth, COLLECTION_MESSAGE, DOCUMENTS_LIMIT, firestore, ORDER_BY_FIELD_PATH_DEFAULT} from "common/constants";
@@ -8,7 +8,10 @@ import ChatMessage from "components/Chat/ChatMessage";
 
 export default function ChatRoom() {
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   const [messages, setMessages] = useState<Array<any>>([]);  // TODO: change "any"
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(false);
   const [formMessage, setFormMessage] = useState<string>('');
   const messagesRef: CollectionReference = collection(firestore, COLLECTION_MESSAGE);
   // get the most recent messages given the limit
@@ -20,13 +23,11 @@ export default function ChatRoom() {
     setMessages(messages);
   });
 
-  // useEffect(() => {
-  //   async function fetch() {
-  //     await getMessages();
-  //   }
-  //
-  //   fetch();
-  // }, []);
+  useEffect(() => {
+    // if (isFirstRender) return;
+    scrollRef.current!.scrollIntoView();
+    setIsFirstRender(true);
+  }, [messages]);
 
   // const getMessages = async (): Promise<void> => {
   //   let messages: Array<any> = [];
@@ -47,14 +48,19 @@ export default function ChatRoom() {
       createdAt: Timestamp.now(),
     };
     await addDoc(messagesRef, docData);
+    scrollRef.current!.scrollIntoView();
   };
 
   return <>
     <SignOut/>
 
-    <div className={classes.messages}>
-      {messages.map((message, index) => <ChatMessage key={index} message={message}/>)}
-    </div>
+    <main>
+      <div className={classes.messages}>
+        {messages.map((message, index) => <ChatMessage key={index} message={message}/>)}
+      </div>
+
+      <div ref={scrollRef}/>
+    </main>
 
     <form className={classes.form} onSubmit={sendMessage}>
       <input className={classes.formInput} autoFocus value={formMessage}
