@@ -11,7 +11,7 @@ export default function ChatRoom() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const [messages, setMessages] = useState<Array<any>>([]);  // TODO: change "any"
-  const [isFirstRender, setIsFirstRender] = useState<boolean>(false);
+  const [mostRecentMessageId, setMostRecentMessageId] = useState<string>("");
   const [formMessage, setFormMessage] = useState<string>('');
   const messagesRef: CollectionReference = collection(firestore, COLLECTION_MESSAGE);
   // get the most recent messages given the limit
@@ -24,9 +24,9 @@ export default function ChatRoom() {
   });
 
   useEffect(() => {
-    // if (isFirstRender) return;
+    if (messages.length === 0 || messages[0].id === mostRecentMessageId) return;  // only permit checks on new messages
     scrollRef.current!.scrollIntoView();
-    setIsFirstRender(true);
+    setMostRecentMessageId(messages[0].id);
   }, [messages]);
 
   // const getMessages = async (): Promise<void> => {
