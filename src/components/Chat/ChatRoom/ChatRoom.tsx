@@ -1,3 +1,4 @@
+import classes from "./ChatRoom.module.scss";
 import {useEffect, useState} from "react";
 import {collection, query, getDocs, orderBy, limit} from "firebase/firestore";
 import {CollectionReference, Query, QuerySnapshot} from "@firebase/firestore"
@@ -29,6 +30,8 @@ export default function ChatRoom() {
   return <>
     <SignOut/>
 
-    {messages.map((message, index) => <ChatMessage key={index} message={message}/>)}
+    <div className={classes.messages}>
+      {messages.map((message, index) => <ChatMessage key={index} message={message}/>)}
+    </div>
   </>;
 }

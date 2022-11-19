@@ -22,7 +22,7 @@ export default function ChatMessage({message}: Props) {
   const messageClass: string = uid === auth.currentUser?.uid ? 'sent' : 'received';
 
   return <>
-    <div className={classes[messageClass]}>
+    <div className={`${classes.message} ${classes[messageClass]}`}>
       {text}
     </div>
   </>;
