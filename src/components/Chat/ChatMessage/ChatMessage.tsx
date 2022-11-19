@@ -22,11 +22,16 @@ export default function ChatMessage({message}: Props) {
   const createdAtClass: string = uid === auth.currentUser?.uid ? 'sentTs' : 'receivedTs';
   const messageClass: string = uid === auth.currentUser?.uid ? 'sent' : 'received';
 
-  const getTs = (seconds: number): string => new Date(seconds * 1000).toISOString().substring(11, 16);
+  /**
+   * returns the HH:MM that the message was sent
+   * TODO: look into using the moment.js library for more comprehensive time AND date display
+   * @param seconds
+   */
+  const getTimeSent = (seconds: number): string => new Date(seconds * 1000).toISOString().substring(11, 16);
 
   return <>
     <span className={`${classes.createdAt} ${classes[createdAtClass]}`}>
-      {getTs(createdAt.seconds)}
+      {getTimeSent(createdAt.seconds)}
     </span>
     <span className={`${classes.message} ${classes[messageClass]}`}>
       {text}
