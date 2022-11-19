@@ -4,3 +4,19 @@
   gap: 0.4rem;
   margin: 0.8rem;
 }
+
+.form {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+
+.formInput {
+  flex: 1;
+  //width: calc(100% - 4rem);
+}
+
+.formBtn {
+  //width: 4rem;
+}
