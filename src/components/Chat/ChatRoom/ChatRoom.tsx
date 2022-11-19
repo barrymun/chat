@@ -29,6 +29,15 @@ export default function ChatRoom() {
     setIsFirstRender(true);
   }, [messages]);
 
+  // const getMessages = async (): Promise<void> => {
+  //   let messages: Array<any> = [];
+  //   const querySnapshot: QuerySnapshot = await getDocs(q);
+  //   // ensure to reverse the messages so that they appear correctly on the page
+  //   querySnapshot.forEach((doc) =>
+  //     messages = [{...doc.data(), id: doc.id}, ...messages]);
+  //   setMessages(messages);
+  // };
+
   const sendMessage = async (e: FormEvent) => {
     e.preventDefault();
     setFormMessage('');
