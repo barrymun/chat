@@ -9,14 +9,16 @@ export default function ChatRoom() {
 
   const [messages, setMessages] = useState<Array<any>>([]);  // TODO: change "any"
   const messagesRef: CollectionReference = collection(firestore, COLLECTION_MESSAGE);
-  const q: Query = query(messagesRef, orderBy(ORDER_BY_FIELD_PATH_DEFAULT, "asc"), limit(DOCUMENTS_LIMIT));
+  // get the most recent messages given the limit
+  const q: Query = query(messagesRef, orderBy(ORDER_BY_FIELD_PATH_DEFAULT, "desc"), limit(DOCUMENTS_LIMIT));
 
   useEffect(() => {
     async function fetch() {
       let messages: Array<any> = [];
       const querySnapshot: QuerySnapshot = await getDocs(q);
+      // ensure to reverse the messages so that they appear correctly on the page
       querySnapshot.forEach((doc) =>
-        messages.push({...doc.data(), id: doc.id}));
+        messages = [{...doc.data(), id: doc.id}, ...messages]);
       setMessages(messages);
       console.log(messages)
     }
