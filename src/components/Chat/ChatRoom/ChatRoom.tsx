@@ -4,7 +4,6 @@ import {addDoc, collection, limit, onSnapshot, orderBy, query, Timestamp} from "
 import {CollectionReference, Query} from "@firebase/firestore"
 import Filter from "bad-words";
 import {auth, COLLECTION_MESSAGE, DOCUMENTS_LIMIT, firestore, ORDER_BY_FIELD_PATH_DEFAULT} from "common/constants";
-import SignOut from "components/SignOut";
 import ChatMessage from "components/Chat/ChatMessage";
 
 const filter: Filter = new Filter({ placeHolder: '*'});  // profanity will be replaced with stars
@@ -61,7 +60,6 @@ export default function ChatRoom() {
   };
 
   return <>
-    <SignOut/>
 
     <main>
       <div className={classes.messages}>
