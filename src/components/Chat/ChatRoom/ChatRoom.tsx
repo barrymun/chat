@@ -2,9 +2,12 @@ import classes from "./ChatRoom.module.scss";
 import React, {ChangeEvent, FormEvent, useEffect, useRef, useState} from "react";
 import {addDoc, collection, limit, onSnapshot, orderBy, query, Timestamp} from "firebase/firestore";
 import {CollectionReference, Query} from "@firebase/firestore"
+import Filter from "bad-words";
 import {auth, COLLECTION_MESSAGE, DOCUMENTS_LIMIT, firestore, ORDER_BY_FIELD_PATH_DEFAULT} from "common/constants";
 import SignOut from "components/SignOut";
 import ChatMessage from "components/Chat/ChatMessage";
+
+const filter: Filter = new Filter({ placeHolder: '*'});  // profanity will be replaced with stars
 
 export default function ChatRoom() {
 
@@ -40,11 +43,17 @@ export default function ChatRoom() {
 
   const sendMessage = async (e: FormEvent) => {
     e.preventDefault();
+
+    // reset the form value to an empty string instantly for a "snappier" chat feeling
     setFormMessage('');
+
     // TODO: add another boolean value to disable button use if a message hasn't been created yet?
+
+    // clean the message of profanity and send the message
+    const cleanedText: string = filter.clean(formMessage);
     const docData: object = {
       uid: auth.currentUser?.uid,
-      text: formMessage,
+      text: cleanedText,
       createdAt: Timestamp.now(),
     };
     addDoc(messagesRef, docData);
