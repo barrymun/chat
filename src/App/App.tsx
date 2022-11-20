@@ -13,7 +13,7 @@ export default function App() {
   return (
     <div>
       <section>
-        <Header/>
+        {user ? <Header photoURL={user.photoURL!}/> : null}
       </section>
 
       <section>

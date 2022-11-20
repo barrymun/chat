@@ -2,8 +2,20 @@ import classes from "./Header.module.scss";
 import React from "react";
 import SignOut from "components/SignOut";
 
-export default function Header() {
+interface Props {
+  photoURL: string;
+}
+
+export default function Header({photoURL}: Props) {
   return <>
-    <SignOut/>
+    <div className={classes.container}>
+
+      <figure className={classes.figure}>
+        <img alt="profile picture" referrerPolicy="no-referrer" className={classes.profile} src={photoURL} />
+      </figure>
+
+      <SignOut/>
+
+    </div>
   </>;
 }
