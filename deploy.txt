@@ -1,0 +1,2 @@
+without functions:
+    firebase deploy --except functions
