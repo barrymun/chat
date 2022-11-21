@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.4rem 0.8rem;
+  background-color: white;
+}
+
+.btnGoogle {
+  box-shadow: 0rem 0rem 4rem rgba(0 0 0 / 35%);
+}
+
+.btnImg {
+  width: 2rem;
+  height: 2rem;
+}

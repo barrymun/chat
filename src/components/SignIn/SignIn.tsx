@@ -1,6 +1,8 @@
+import classes from "./SignIn.module.scss";
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import {auth} from "common/constants";
 import {Auth} from "@firebase/auth";
+import googleIcon from 'assets/google-icon.svg';
 
 export default function SignIn() {
 
@@ -29,6 +31,10 @@ export default function SignIn() {
   };
 
   return <>
-    <button onClick={signInWithGoogle}>sign in with Google</button>
+    <div className={classes.container}>
+      <button className={`${classes.btn} ${classes.btnGoogle}`} onClick={signInWithGoogle}>
+        <img alt="Google" src={googleIcon} className={classes.btnImg}/>{' '}Continue with Google
+      </button>
+    </div>
   </>;
 }
