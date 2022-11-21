@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0rem 0rem 4rem rgba(0 0 0 / 35%);
+  box-shadow: var(--app-shadow);
 }
 
 .item {

@@ -24,8 +24,7 @@
 }
 
 .btnGoogle {
-  //box-shadow: 0rem 0rem 4rem rgba(0 0 0 / 35%);
-  border: 2px solid #f5f5f5;
+  border: var(--app-border);
 }
 
 .btnImg {
