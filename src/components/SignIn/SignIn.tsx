@@ -1,6 +1,5 @@
 import classes from "./SignIn.module.scss";
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
-import {auth} from "common/constants";
 import {Auth} from "@firebase/auth";
 import googleIcon from 'assets/google-icon.svg';
 

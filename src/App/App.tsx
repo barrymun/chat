@@ -8,7 +8,6 @@ import ChatRoom from "components/Chat/ChatRoom";
 export default function App() {
 
   const [user] = useAuthState(auth);
-  console.log(user)
 
   return (
     <div>
