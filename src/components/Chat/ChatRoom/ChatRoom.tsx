@@ -1,5 +1,5 @@
 import classes from "./ChatRoom.module.scss";
-import React, {ChangeEvent, FormEvent, useEffect, useRef, useState} from "react";
+import React, {ChangeEvent, FormEvent, useContext, useEffect, useRef, useState} from "react";
 import {addDoc, collection, getFirestore, limit, onSnapshot, orderBy, query, Timestamp} from "firebase/firestore";
 import {CollectionReference, Firestore, Query} from "@firebase/firestore"
 import Filter from "bad-words";
@@ -7,6 +7,7 @@ import {COLLECTION_MESSAGE, DOCUMENTS_LIMIT, ORDER_BY_FIELD_PATH_DEFAULT} from "
 import ChatMessage from "components/Chat/ChatMessage";
 import {Auth} from "@firebase/auth";
 import {getAuth} from "firebase/auth";
+import {SnapshotSubscriberContext} from "../../../common/contexts";
 
 const filter: Filter = new Filter({placeHolder: '*'});  // profanity will be replaced with stars
 
@@ -14,6 +15,7 @@ export default function ChatRoom() {
 
   const auth: Auth = getAuth();
   const firestore: Firestore = getFirestore();
+  let { subscriptions, setSubscriptions } = useContext(SnapshotSubscriberContext)
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -29,6 +31,10 @@ export default function ChatRoom() {
       messages = [{...doc.data(), id: doc.id}, ...messages]);
     setMessages(messages);
   });
+
+  useEffect(() => {
+    setSubscriptions([...subscriptions, unsubscribe]);
+  }, []);
 
   useEffect(() => {
     if (messages.length === 0 || messages[0].id === mostRecentMessageId) return;  // only permit checks on new messages

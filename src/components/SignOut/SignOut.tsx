@@ -1,12 +1,20 @@
 import classes from './SignOut.module.scss';
 import {Auth} from "@firebase/auth";
 import {getAuth, signOut} from "firebase/auth";
+import {useContext} from "react";
+import {SnapshotSubscriberContext} from "common/contexts";
 
 export default function SignOut() {
   const auth: Auth = getAuth();
+  let { subscriptions } = useContext(SnapshotSubscriberContext);
+
+  const handleSignOut = async (): Promise<void> => {
+    subscriptions.forEach((unsubscribe: any) => unsubscribe());
+    await signOut(auth)
+  };
 
   return auth.currentUser && (
-    <button type="button" className={classes.btn} onClick={() => signOut(auth)}>
+    <button type="button" className={classes.btn} onClick={handleSignOut}>
       <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-logout" width="24" height="24"
            viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round"
            strokeLinejoin="round">
