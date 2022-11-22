@@ -1,14 +1,19 @@
 import classes from "./ChatRoom.module.scss";
 import React, {ChangeEvent, FormEvent, useEffect, useRef, useState} from "react";
-import {addDoc, collection, limit, onSnapshot, orderBy, query, Timestamp} from "firebase/firestore";
-import {CollectionReference, Query} from "@firebase/firestore"
+import {addDoc, collection, getFirestore, limit, onSnapshot, orderBy, query, Timestamp} from "firebase/firestore";
+import {CollectionReference, Firestore, Query} from "@firebase/firestore"
 import Filter from "bad-words";
-import {auth, COLLECTION_MESSAGE, DOCUMENTS_LIMIT, firestore, ORDER_BY_FIELD_PATH_DEFAULT} from "common/constants";
+import {COLLECTION_MESSAGE, DOCUMENTS_LIMIT, ORDER_BY_FIELD_PATH_DEFAULT} from "common/constants";
 import ChatMessage from "components/Chat/ChatMessage";
+import {Auth} from "@firebase/auth";
+import {getAuth} from "firebase/auth";
 
-const filter: Filter = new Filter({ placeHolder: '*'});  // profanity will be replaced with stars
+const filter: Filter = new Filter({placeHolder: '*'});  // profanity will be replaced with stars
 
 export default function ChatRoom() {
+
+  const auth: Auth = getAuth();
+  const firestore: Firestore = getFirestore();
 
   const scrollRef = useRef<HTMLDivElement>(null);
 

@@ -1,5 +1,6 @@
 import classes from "./ChatMessage.module.scss";
-import { auth } from "common/constants";
+import {Auth} from "@firebase/auth";
+import {getAuth} from "firebase/auth";
 
 interface CreatedAt {
   nanoseconds: number;
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export default function ChatMessage({message}: Props) {
+  const auth: Auth = getAuth();
   const {id, uid, text, createdAt} = message;
   const createdAtClass: string = uid === auth.currentUser?.uid ? 'sentTs' : 'receivedTs';
   const messageClass: string = uid === auth.currentUser?.uid ? 'sent' : 'received';
