@@ -12,7 +12,7 @@ export default function App() {
 
   const auth: Auth = getAuth();
   const [user] = useAuthState(auth);
-  let [subscriptions, setSubscriptions] = React.useState([])
+  let [subscriptions, setSubscriptions] = React.useState<Array<any>>([])
 
   return (
     <SnapshotSubscriberContext.Provider value={{subscriptions, setSubscriptions}}>

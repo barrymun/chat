@@ -7,7 +7,7 @@ import {COLLECTION_MESSAGE, DOCUMENTS_LIMIT, ORDER_BY_FIELD_PATH_DEFAULT} from "
 import ChatMessage from "components/Chat/ChatMessage";
 import {Auth} from "@firebase/auth";
 import {getAuth} from "firebase/auth";
-import {SnapshotSubscriberContext} from "../../../common/contexts";
+import {SnapshotSubscriberContext} from "common/contexts";
 
 const filter: Filter = new Filter({placeHolder: '*'});  // profanity will be replaced with stars
 

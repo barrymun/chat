@@ -7,7 +7,7 @@ import {FirebaseApp} from "@firebase/app";
 import {initializeApp} from "firebase/app";
 import {Analytics} from "@firebase/analytics";
 import {getAnalytics} from "firebase/analytics";
-import {FIREBASE_CONFIG} from "./common/constants";
+import {FIREBASE_CONFIG} from "common/constants";
 
 // Initialize Firebase
 const app: FirebaseApp = initializeApp(FIREBASE_CONFIG);
