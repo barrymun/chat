@@ -6,7 +6,7 @@ import {SnapshotSubscriberContext} from "common/contexts";
 
 export default function SignOut() {
   const auth: Auth = getAuth();
-  let { subscriptions } = useContext(SnapshotSubscriberContext);
+  let {subscriptions} = useContext(SnapshotSubscriberContext);
 
   const handleSignOut = async (): Promise<void> => {
     subscriptions.forEach((unsubscribe: any) => unsubscribe());

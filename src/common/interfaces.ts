@@ -1,4 +1,6 @@
+import {Unsubscribe} from "@firebase/auth";
+
 export interface SnapshotSubscriberContextInterface {
-  subscriptions: Array<any>;
-  setSubscriptions: any;
+  subscriptions: Array<Unsubscribe>;
+  setSubscriptions: Function;
 }

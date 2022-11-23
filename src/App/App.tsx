@@ -1,7 +1,7 @@
 import classes from './App.module.scss';
 import React, {Suspense} from "react";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {Auth} from "@firebase/auth";
+import {Auth, Unsubscribe} from "@firebase/auth";
 import {getAuth} from "firebase/auth";
 import {SnapshotSubscriberContext} from "common/contexts";
 
@@ -17,7 +17,7 @@ export default function App() {
 
   const auth: Auth = getAuth();
   const [user] = useAuthState(auth);
-  let [subscriptions, setSubscriptions] = React.useState<Array<any>>([])
+  let [subscriptions, setSubscriptions] = React.useState<Array<Unsubscribe>>([])
 
   return (
     <SnapshotSubscriberContext.Provider value={{subscriptions, setSubscriptions}}>

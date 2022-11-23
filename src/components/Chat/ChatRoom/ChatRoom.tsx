@@ -5,7 +5,7 @@ import {CollectionReference, Firestore, Query} from "@firebase/firestore"
 import Filter from "bad-words";
 import {COLLECTION_MESSAGE, DOCUMENTS_LIMIT, ORDER_BY_FIELD_PATH_DEFAULT} from "common/constants";
 import ChatMessage from "components/Chat/ChatMessage";
-import {Auth} from "@firebase/auth";
+import {Auth, Unsubscribe} from "@firebase/auth";
 import {getAuth} from "firebase/auth";
 import {SnapshotSubscriberContext} from "common/contexts";
 
@@ -25,7 +25,7 @@ export default function ChatRoom() {
   const messagesRef: CollectionReference = collection(firestore, COLLECTION_MESSAGE);
   // get the most recent messages given the limit
   const q: Query = query(messagesRef, orderBy(ORDER_BY_FIELD_PATH_DEFAULT, "desc"), limit(DOCUMENTS_LIMIT));
-  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  const unsubscribe: Unsubscribe = onSnapshot(q, (querySnapshot) => {
     let messages: Array<any> = [];
     querySnapshot.forEach((doc) =>
       messages = [{...doc.data(), id: doc.id}, ...messages]);
