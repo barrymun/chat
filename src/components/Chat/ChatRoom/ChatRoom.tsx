@@ -8,6 +8,7 @@ import ChatMessage from "components/Chat/ChatMessage";
 import {Auth, Unsubscribe} from "@firebase/auth";
 import {getAuth} from "firebase/auth";
 import {SnapshotSubscriberContext} from "common/contexts";
+import {Message} from "common/interfaces";
 
 const filter: Filter = new Filter({placeHolder: '*'});  // profanity will be replaced with stars
 
@@ -19,7 +20,7 @@ export default function ChatRoom() {
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const [messages, setMessages] = useState<Array<any>>([]);  // TODO: change "any"
+  const [messages, setMessages] = useState<Array<Message>>([]);
   const [mostRecentMessageId, setMostRecentMessageId] = useState<string>("");
   const [formMessage, setFormMessage] = useState<string>('');
   const messagesRef: CollectionReference = collection(firestore, COLLECTION_MESSAGE);

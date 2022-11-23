@@ -1,21 +1,10 @@
 import classes from "./ChatMessage.module.scss";
 import {Auth} from "@firebase/auth";
 import {getAuth} from "firebase/auth";
-
-interface CreatedAt {
-  nanoseconds: number;
-  seconds: number;
-}
-
-interface Message {
-  id: string;
-  uid: string;
-  text: string;
-  createdAt: CreatedAt;
-}
+import {Message} from "common/interfaces";
 
 interface Props {
-  message: Message;  // TODO:
+  message: Message;
 }
 
 export default function ChatMessage({message}: Props) {
